@@ -34,8 +34,10 @@ func (r *Reporter) Write(report manifest.DriftReport) error {
 	switch r.format {
 	case FormatJSON:
 		return r.writeJSON(report)
-	default:
+	case FormatText:
 		return r.writeText(report)
+	default:
+		return fmt.Errorf("reporter: unsupported format %q", r.format)
 	}
 }
 
